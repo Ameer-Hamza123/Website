@@ -68,7 +68,12 @@ function signup(){
    var aa = (localStorage.getItem("userobj"));
    var bb = JSON.parse(aa);
    
-   location.assign("../signin/Signin.html")
+   if (supfname.length !== 0 && suplname.length !== 0 && supmail.length !== 0 && suppass.length !== 0){
+   location.assign("../signin/Signin.html");
+}else {
+   alert("Please fillout all fields")
+}
+
 
    }
 
@@ -76,25 +81,35 @@ function signup(){
 function user(){
    // var name = localStorage.getItem("firstname");
    // var laname = localStorage.getItem("lastname");
-      var username = document.getElementById('simail').value
-      var password = document.getElementById('sipass').value
-      for (var i = 0; i < userobj.length; i++) {
-        if (username == userobj[i].email) {
-          if (password == userobj[i].password) {
-            location.assign("../index.html")
-          } else {
-            alert('wrong password')
-          }
-        }
-      }
-    
-      alert('wrong username')
-    }
-   
+      var username = document.getElementById('simail').value;
+      var password = document.getElementById('sipass').value;
 
+      var aa = (localStorage.getItem("userobj"));
+      var bb = JSON.parse(aa);
+      
+      if (username.length === 0 ){
+         if (password.length === 0){
+        return alert("Please fillout all fields")
+      }
+   }
+   
+      for (var i = 0; i < bb.length; i++) {
+        if (username === bb[i].email) {
+         if (password === bb[i].password){
+           var uRl =  location.assign("../index.html");
+            return uRl;
+         }else {
+            return alert('wrong Email or password');
+            //  return alert('wrong username')
+           }
+         } 
+      }
+   
+   alert('wrong Email or password')
+   
+   }
 
    // var cpassword = localStorage.getItem("confirmpassword");
    // console.log(name, laname, email, password, cpassword)
 
 
-// user()
